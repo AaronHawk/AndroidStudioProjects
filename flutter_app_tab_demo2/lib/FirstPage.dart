@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class First extends StatelessWidget{
 
-  @overide
+  @override
   Widget build(BuildContext context)
   {
     return Container(
