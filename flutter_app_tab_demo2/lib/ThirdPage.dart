@@ -1,7 +1,7 @@
 //new page
 //ThirdPage.dart
 import 'package:flutter/material.dart';
-
+//note
 class Third extends StatelessWidget{
 
   @override
