@@ -1,0 +1,170 @@
+import 'package:flutter/material.dart';
+import './FirstPage.dart' as first;
+import './SecondPage.dart' as second;
+import './ThirdPage.dart' as third;
+//tab demo2
+
+
+void main()
+{
+ runApp(MaterialApp(home: myTabs()));
+}
+
+class myTabs extends StatefulWidget{
+ @override
+ myTabsState  createState()=> myTabsState();
+}
+
+class myTabsState extends State<myTabs> with SingleTickerProviderStateMixin{
+
+ TabController mytabcontroller;
+
+ @override
+ void initState()
+ {
+   super.initState();
+   mytabcontroller = TabController(vsync: this, length: 3);
+ }
+
+ @override
+ void dispose()
+ {
+   mytabcontroller.dispose();
+   super.dispose();
+ }
+
+
+ @override
+ Widget build(BuildContext context) {
+   return Scaffold(
+       appBar: AppBar(title: Text("Pages"), backgroundColor: Colors.green,
+           bottom: TabBar(controller: mytabcontroller,
+               tabs: <Tab>[
+                 Tab(icon: Icon(Icons.arrow_forward)),
+                 Tab(icon: Icon(Icons.arrow_downward)),
+                 Tab(icon: Icon(Icons.arrow_back))
+               ])),
+       bottomNavigationBar: Material(
+           color: Colors.blue,
+           child: TabBar(controller: mytabcontroller,
+               tabs: <Tab>[
+                 Tab(text: "Forward"),
+                 Tab(text: "Down"),
+                 Tab(text:"Back")
+               ]
+           )
+       ),
+       body: TabBarView(
+
+           controller: mytabcontroller,
+           children: <Widget>[
+             first.First(),
+             second.Second(),
+             third.Third()
+           ]
+
+       )
+   );
+ }
+}
+
+
+//new page
+//FirstPage.dart
+import 'package:flutter/material.dart';
+
+class First extends StatelessWidget{
+
+@override
+Widget build(BuildContext context)
+{
+ return Container(
+     margin: EdgeInsets.all(10),
+     child: Center(
+         child: Column(
+             mainAxisAlignment: MainAxisAlignment.start,
+          
+           children: <Widget>[
+              Text("First First yeah its first"),
+             Text("First First yeah its first xx"),
+             Text("First First yeah its first xxx"),
+             Text("First First yeah its first xxxxx"),
+            
+            
+           ],
+
+
+         )
+     )
+ );
+}
+
+}
+
+
+//new page
+//ThirdPage.dart
+import 'package:flutter/material.dart';
+
+class Third extends StatelessWidget{
+
+@override
+Widget build(BuildContext context)
+{
+ return Container(
+     margin: EdgeInsets.all(10),
+     child: Center(
+         child: Column(
+             mainAxisAlignment: MainAxisAlignment.start,
+          
+           children: <Widget>[
+              Text("Third Third yeah its Third"),
+             Text("Third Third yeah its Thirdxx"),
+             Text("Third Third yeah its Thirdxxx"),
+             Text("Third Third yeah its Thirdxxxxx"),
+		  Icon(Icons.airline_seat_legroom_normal)
+            
+            
+           ],
+
+
+         )
+     )
+ );
+}
+
+}
+
+//new page
+//ThirdPage.dart
+import 'package:flutter/material.dart';
+
+class Third extends StatelessWidget{
+
+@override
+Widget build(BuildContext context)
+{
+ return Container(
+     margin: EdgeInsets.all(10),
+     child: Center(
+         child: Column(
+             mainAxisAlignment: MainAxisAlignment.start,
+          
+           children: <Widget>[
+              Text("Third Third yeah its Third"),
+             Text("Third Third yeah its Third xx"),
+             Text("Third Third yeah its Third xxx"),
+             Text("Third Third yeah its Third xxxxx"),
+		  Icon(Icons.camera_enhance)
+            
+            
+           ],
+
+
+         )
+     )
+ );
+}
+
+}
+
