@@ -14,7 +14,13 @@ String mainProfilePix = "http://wwwnc.fvcc.edu/fileadmin/photos/people/james_gou
 String minProfilePix = "https://cdn.hswstatic.com/gif/pug.jpg";
 
 void switchUser(){
-  St
+  String backupString = mainProfilePix;
+  this.setState((){
+    mainProfilePix = minProfilePix;
+    minProfilePix = backupString;
+  });
 }
+
+
 
 }
