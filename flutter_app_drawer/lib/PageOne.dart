@@ -84,7 +84,11 @@ Widget build(BuildContext context){
 
   );
 }
+<<<<<<< HEAD
 
 
+=======
+//another note
+>>>>>>> 25dd4e8a2879b155e1f046be0f227b37c35cf5cc
 }
 
