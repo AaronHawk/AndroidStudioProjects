@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: "Calculator",
         theme: ThemeData(
-          primarySwatch: Colors.deepOrange  ,
+          primarySwatch: Colors.deepOrange,
         ),
         home: MyHomePage(title: "Calculator"));
   }
@@ -30,30 +30,29 @@ class _MyHomePageState extends State<MyHomePage> {
   final myTextController1 = TextEditingController();
   final myTextController2 = TextEditingController();
   final myTextController3 = TextEditingController();
+  final myTextController4 = TextEditingController();
 
 //variables
-  double num1 = 0.0;
-  double num2 = 0.0;
+  double principal = 0.0;
+  double rate = 0.0;
+  double time = 0.0;
   double ans = 0.0;
 
   int operation = -1;
   String myAns = "Answer";
 
   void myMath() {
-    num1 = double.parse(myTextController1.text);
-    num2 = double.parse(myTextController2.text);
+    //Simple interest calc
+    //Simple interest = principal * rate * time
+    principal = double.parse(myTextController1.text);
+    rate = double.parse(myTextController2.text);
+    time = double.parse(myTextController3.text);
 
     if (operation == 1) {
-      ans = num1 + num2;
-    } else if (operation == 2) {
-      ans = num1 - num2;
-    } else if (operation == 3) {
-      ans = num1 * num2;
-    } else if (operation == 4) {
-      ans = num1 / num2;
+      ans = principal * (rate / 100.0) * time;
     }
 
-    myTextController3.text = ans.toString();
+    myTextController4.text = ans.toString();
   }
 
   @override
@@ -61,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     myTextController1.dispose();
     myTextController2.dispose();
     myTextController3.dispose();
+    myTextController4.dispose();
     super.dispose();
   }
 
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text("Principal        "),
+                Text("Principal \$\$\$                  "),
                 Container(
                     width: 100.0,
                     height: 30.0,
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text("Interest Rate"),
+                Text("Interest % (Per month)"),
                 Container(
                     width: 100.0,
                     height: 30.0,
@@ -108,14 +108,14 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text("Time (Months)"),
+                Text("Time (Months)            "),
                 Container(
                     width: 100.0,
                     height: 30.0,
                     margin: EdgeInsets.all(20.0),
                     child: TextField(
                         enabled: true,
-                        controller: myTextController2,
+                        controller: myTextController3,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                             filled: true,
@@ -126,6 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                //Answer box
                 Text(myAns),
                 Container(
                     width: 100.0,
@@ -133,13 +134,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     margin: EdgeInsets.all(20.0),
                     child: TextField(
                         enabled: false,
-                        controller: myTextController3,
+                        controller: myTextController4,
                         decoration: InputDecoration(
                             filled: true, fillColor: Colors.white)))
               ]),
           Row(children: <Widget>[
+            //calculate button
             Container(
-                width: 200.0,
+                width: 361,
                 height: 70.0,
                 margin: EdgeInsets.all(5.0),
                 child: FlatButton(
@@ -147,9 +149,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       operation = 1;
                       myMath();
                     },
-                    child: Text("+",
+                    child: Text("Calculate interest",
                         style: TextStyle(fontWeight: FontWeight.bold)))),
-
           ])
         ]));
   }
