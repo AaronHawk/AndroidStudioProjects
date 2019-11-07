@@ -10,13 +10,17 @@ import 'dart:convert';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Connect',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.orange),
-        home: MyHomePage(title: 'Flutter Connect'));
+      title: 'Flutter Server',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+      ),
+      home: MyHomePage(title: 'Flutter Server App'),
+    );
   }
 }
 
@@ -29,26 +33,48 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var data = "";
-
-  @override
-  void initState() {
-    getData();
-  }
-
-  Future getData() async {
-    var url = 'http://flutter.locusnoesis.com/get.php';
-    http.Response response = await http.get(url);
-    data = jsonDecode(response.body);
-  }
+  var data;
+  var value = {};
+  var bs = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.title), centerTitle: true),
-        body: Container(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Text(data.toString())])));
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Text(bs),
+      ),
+    );
+  }
+
+  Future getData() async {
+    var url = 'http://flutter.locusnoesis.com/get..php';
+    http.Response response = await http.get(url);
+    data = await jsonDecode(response.body);
+
+    print(data.toString());
+
+    for (var e in data) {
+      bs = bs +
+          "Owner Last Name " +
+          e['OwnerLN'] +
+          "\nMake: " +
+          e['Make'] +
+          "\nModel: " +
+          e['Model'] +
+          "\nCarYear" +
+          e['CarYear'] +
+          "\n\n";
+    }
+
+    print(bs);
+  }
+
+  @override
+  void initState() {
+    getData();
   }
 }
